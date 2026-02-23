@@ -1,124 +1,153 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Reset & Global */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  color:#ad0b0b;
+  background: url('images/your-background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb);
-  min-height: 100vh;
-  overflow-x: hidden;
-  color: white;
+/* FIXED LOGO */
+.fixed-logo{
+  position: fixed;           /* always fixed */
+  top: 10px;                 /* distance from top */
+  left: 50%;                 /* center horizontally */
+  transform: translateX(-50%); /* perfectly center */
+  width: 300px;
+  height: 10px;
+  z-index: 99;             /* on top */
+  pointer-events: none;      /* ignore clicks */
 }
 
-.container {
-  padding: 60px 20px;
-  text-align: center;
-}
+/* Page wrapper */
+.page-wrapper{flex:1;padding-top:130px;}
 
-h1 {
-  font-size: 3em;
-}
-
-.date {
-  margin-top: 10px;
-  font-size: 1.2em;
-}
-
-.typing-text {
+/* Sections */
+section{
+  padding:60px 20px;
+  text-align:center;
+  min-height:80vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 20px;
   margin: 30px auto;
-  font-size: 1.4em;
-  width: fit-content;
-  border-right: 3px solid white;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: typing 4s steps(40) infinite alternate;
+  max-width: 900px;
+  background: rgba(255,255,255,0.2);
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+/* Hero Section */
+.hero h1{
+  font-size:2.8em;
+  color:#333;
+  text-shadow:0 0 8px #fff,0 0 20px #FFB6C1;
+}
+.hero p{
+  font-size:1.3em;
+  color:#555;
+  margin:10px 0;
 }
 
-.card {
-  background: rgba(255,255,255,0.9);
-  color: #333;
-  max-width: 650px;
-  margin: 40px auto;
-  padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+/* Story Section */
+.story .card{
+  background:rgba(255,255,255,0.9);
+  color:#333;
+  padding:25px;
+  border-radius:20px;
+  max-width:700px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  font-size:1.2em;
+  line-height:1.6em;
+  text-align:center;
+  border: 1.5px solid rgba(200,200,200,0.5);
 }
 
-.gallery {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+/* Countdown */
+.countdown h2{
+  font-size:1.8em;
+  color:#444;
+  margin-bottom:20px;
+}
+.counter{font-size:1.5em;color:#555;margin-bottom:15px;}
+.message{
+  font-size:1.2em;line-height:1.5em;margin-top:15px;color:#444;
 }
 
-.gallery img {
-  width: 230px;
-  height: 300px;
-  border-radius: 25px;
-  object-fit: cover;
-  transition: 0.5s;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+/* Gallery */
+.gallery-section h2{
+  font-size:1.8em;margin:25px 0;color:#444;
+}
+.gallery{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:15px;}
+.gallery img{
+  width:200px;height:260px;object-fit:cover;border-radius:20px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+  transition:0.5s;cursor:pointer;
+  border: 2px solid rgba(255,255,255,0.5);
+}
+.gallery img:hover{transform:scale(1.1);filter:brightness(1.05);}
+
+/* Footer */
+.sticky-footer{
+  text-align:center;
+  padding:20px 10px;
+  font-size:1em;
+  background:rgba(255,255,255,0.85);
+  color:#333;
+  border-top:1.5px solid rgba(200,200,200,0.5);
+  position:sticky;
+  bottom:0;
 }
 
-.gallery img:hover {
-  transform: scale(1.15) rotate(-2deg);
+/* Responsive */
+@media(max-width:768px){.gallery img{width:45%;height:auto;}h1{font-size:2em;}}
+@media(max-width:480px){.gallery img{width:90%;height:auto;}h1{font-size:1.5em;}}
+/* Heart effect */
+.heart{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: floatUp 1.5s ease-out forwards;
+  z-index: 9999;
 }
 
-.counter {
-  margin-top: 50px;
-  font-size: 1.6em;
-  text-shadow: 0 0 15px hotpink;
+.heart::before,
+.heart::after{
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
 }
 
-footer {
-  margin-top: 60px;
-  font-size: 0.9em;
-}
+.heart::before{top:-10px; left:0;}
+.heart::after{left:10px; top:0;}
 
-/* reveal on scroll */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s ease;
+@keyframes floatUp{
+  0%{opacity:1; transform: translateY(0) rotate(45deg) scale(1);}
+  100%{opacity:0; transform: translateY(-50px) rotate(45deg) scale(0.5);}
 }
+/* Background Gradient + Optional Overlay */
+body {
+  /* Solid color fallback */
+  background-color: #fdf6f0;
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
+  /* Optional gradient overlay */
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.2),  /* top overlay */
+      rgba(255, 255, 255, 0.2)   /* bottom overlay */
+    ),
+    url('valerialu-cherry-blossoms-6153384.jpg') no-repeat center center fixed;
 
-/* teddy */
-.teddy {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-size: 70px;
-  animation: float 3s ease-in-out infinite;
-  cursor: pointer;
-  z-index: 5;
-}
-
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-/* hearts */
-.heart {
-  position: fixed;
-  font-size: 20px;
-  animation: rise 2s linear forwards;
-  pointer-events: none;
-}
-
-@keyframes rise {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-100px); opacity: 0; }
+  background-size: cover;       /* Cover entire screen */
 }
